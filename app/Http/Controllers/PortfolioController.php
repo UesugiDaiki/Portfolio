@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 use App\Http\Controllers\SkillController;
 
@@ -80,7 +79,6 @@ class PortfolioController extends Controller
                 'path' => $image->getClientOriginalName(),
             ];
             DB::insert('insert into image (work_id, path) values (:work_id, :path)', $param);
-            Log::debug($request->image);
             Storage::putFileAs('/public/'.$portfolio_id, $image, $image->getClientOriginalName());
         }
 
